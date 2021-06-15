@@ -115,8 +115,8 @@ class Storage extends CI_Controller {
 										  FROM sale
 										  LEFT JOIN payment_method ON payment_method.id = sale.payment_method_id AND sale.payment_method_id != 'z'
 										  WHERE sale.dept_id = " . $this->session->userdata('dept_id') . "
-										  AND sale.warehouse_id = " . $this->session->userdata('p_warehouse_id') . "
-										  AND DATE_FORMAT(date_kirim, 'Y-m-d') = DATE_FORMAT(NOW(), 'Y-m-d')
+										  AND sale.warehouse_id = 5
+										  AND DATE_FORMAT(date_move, 'Y-m-d') = DATE_FORMAT(NOW(), 'Y-m-d')
 										  ORDER BY sale.date_lunas, date_piutang DESC");
 
 		$results = $query->result();
@@ -203,11 +203,23 @@ class Storage extends CI_Controller {
 
 		$this->db->trans_start();
 
-		$data = array(
+		if ($this->session->userdata('p_warehouse_id') == 4) {
+
+			$data = array(
+						'date_move'	=> date('Y-m-d H:i:s'),
+						'updated_time'	=> date('Y-m-d H:i:s'),
+						'updated_by' 	=> $this->session->userdata('user_id')
+					);		
+
+		} else {
+
+			$data = array(
 						'date_kirim'	=> date('Y-m-d H:i:s'),
 						'updated_time'	=> date('Y-m-d H:i:s'),
 						'updated_by' 	=> $this->session->userdata('user_id')
 					);		
+
+		}
 
 		$this->db->where('id', $this->input->post('id'));
 		$this->db->update('sale', $data);

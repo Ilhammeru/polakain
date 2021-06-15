@@ -316,9 +316,11 @@ class Item extends CI_Controller {
 
 			}
 
-			$btnPrintBarcode = '<a href="' . site_url('item/print_barcode') . '?code=' . $rows->code . '" class="btn btn-sm btn-outline-secondary" target="_blank"><i class="fa fa-qrcode"></i></a>';
+			$btnViewBarcode = '<a href="' . site_url('item/print_barcode') . '?code=' . $rows->code . '" class="btn btn-sm btn-outline-secondary" target="_blank"><i class="fa fa-qrcode"></i></a>';
 
-			$row[] = '<div class="btn-group">' . $btnPrintBarcode . $btnEdit . $btnDelete . '</div>';
+			$btnPrintBarcode = '<a onclick="view_print('. $rows->id .')" class="btn btn-sm btn-outline-secondary" target="_blank"><i class="fa fa-print"></i></a>';
+
+			$row[] = '<div class="btn-group">' . $btnViewBarcode . $btnPrintBarcode . $btnEdit . $btnDelete . '</div>';
 
 			$data[] = $row;
 
@@ -980,34 +982,47 @@ class Item extends CI_Controller {
 	* @param field-value-print
 	*/
 	public function process_print() {
-		$id 	= $this->input->post('field-id-print');
-		$value 	= $this->input->post('field-value-print');
-		$code 	= $this->input->post('field-code-print');
+		$value 	= $this->input->post('value');
+		$code 	= $this->input->post('code');
 
-		$arrCheck = array_filter($value);
-
-		if (count($arrCheck) != count($value)) {
+		if ($value == '') {
 			echo 'array-null';
-		} else if (array_sum($value) > 18) {
-			echo 'array-max';
 		} else {
-			$img 		= array();
-			$code_print = array();
-			for ($i = 0; $i < count($code); $i++) {
-				for ($x = 0; $x < ($value[$i] * 3); $x++) {
-					$img[$i][$x] = base_url('assets/barcode/') . $code[$i] . '.png';
-					$code_print[$i][$x] = $code[$i]; 
-				}
+			for ($i = 0; $i < $value; $i++) {
+				$img[] 			= base_url() . 'assets/barcode/' . $code . '.png';
+				$code_print[] 	= $code;
 			}
-	
+
 			$data['img'] 	= $img;
 			$data['code']	= $code_print;
-	
+
 			$this->load->view('master/item/print-view', $data);
 		}
 
 	}
 	// end of function process_print
+
+	/**
+	* 
+	*/
+	public function get_print() {
+		$id = $_POST['id'];
+
+		$result = $this->db->query("SELECT code, name FROM item WHERE id = $id")->row_array();
+
+		$code = $result['code'];
+		$name = $result['name'];
+
+		$img 	= base_url() . 'assets/barcode/' . $code . '.png';
+
+		$data['img']	= $img;
+		$data['name']	= $name;
+		$data['code']	= $code;
+
+		echo json_encode($data);
+
+	}
+	// end of function view_print
 
 }
 /* End of file Item.php */

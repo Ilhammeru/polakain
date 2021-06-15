@@ -73,10 +73,22 @@
 
             img {
                 margin: 0 1em;
-                margin-top: 1em;
+                margin-top: 0.85em;
                 margin-bottom: 0;
                 width: 39mm;
                 height: 14mm;
+            }
+            
+            .img-1 {
+                margin-left: 0.8em;
+            }
+            
+            .img-2 {
+                margin-left: 1.2em;
+            }
+            
+            .img-3 {
+                margin-left: 1.6em;
             }
         }
     </style>
@@ -102,21 +114,19 @@
     <page size="A5">
         <div class="row">
             <?php
-            for ($i = 0; $i < count($img); $i++) {
-                for ($x = 0; $x < count($img[$i]); $x++) {
-                    if (is_int(($x -2) / 3)) {
-                        $classes = 'img-3';
-                    } else if (is_int($x / 3)) {
-                        $classes = 'img-1';
-                    } else {
-                        $classes = 'img-2';
-                    }
-
-                    echo '<div class="text-center col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4" style="position: relative; margin-bottom: -0.45em;">';
-                    echo '<img src="' . $img[$i][$x] . '" class="' . $classes . '" />';
-                    echo '<p>' . $code[$i][$x] . '</p>';
-                    echo '</div>';
+            for ($i = 0; $i < (count($img) * 3); $i++) {
+                if (is_int(($i - 2) / 3)) {
+                    $classes = 'img-3';
+                } else if (is_int($i / 3)) {
+                    $classes = 'img-1';
+                } else {
+                    $classes = 'img-2';
                 }
+
+                echo '<div class="text-center col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4" style="position: relative; margin-bottom: -0.4em;">';
+                echo '<img src="' . $img[$i] . '" class="' . $classes . '" />';
+                echo '<p style="font-size: 1em;">' . $code[$i] . '</p>';
+                echo '</div>';
             }
             ?>
             <!-- <div class="text-center col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
@@ -141,6 +151,13 @@
             </div> -->
         </div>
     </page>
+
+    <script>
+        $(document).ready(function() {
+            window.print();
+        })
+    </script>
+
 </body>
 
 </html>

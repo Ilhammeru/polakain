@@ -92,12 +92,14 @@ class Update_stock extends CI_Controller {
 			endforeach;
 		}
 
-		$results = $this->db->query("SELECT id,
+		$results = $this->db->query("SELECT item.id,
 											    code,
-											    name
+											    CONCAT(item.name, ' (', itemcolor.name, ')') AS name
 											    FROM item
+												JOIN itemcolor ON itemcolor.id = JSON_UNQUOTE(JSON_EXTRACT(attribute, '$.color_id'))
 											    WHERE dept_id = " . $this->session->userdata('dept_id') . "
-											    ORDER BY name ASC")->result();
+											    ORDER BY name ASC
+												LIMIT 490")->result();
 
 		$attr = array(
 						'result' => $results,
@@ -194,38 +196,37 @@ class Update_stock extends CI_Controller {
 
 	public function get_data_stock_move() {
 
-		$query = "SELECT detail
+		$sintax = "SELECT detail
 						 FROM move_item
-						 WHERE dept_id = " . $this->session->userdata('dept_id') . "
+						 WHERE dept_id = 41
 						 AND from_warehouse =  " . $this->session->userdata('p_warehouse_id') . "
 						 AND DATE_FORMAT(created_time, '%Y-%m-%d') = '" . $this->input->post('date') . "'";
 
-		$result = $this->db->query($query)->result();
+		$query = $this->db->query($sintax);
 
 		$stock_out = 0;
 
-		if ($result > 0) {
+		if ($query->num_rows() > 0) {
+			$result = $query->result();
 
-			foreach ($result as $row) :
+			if ($result > 0) {
 
-				$data_stock = json_decode($row->detail);
+				foreach ($result as $row) :
 
-				foreach ($data_stock as $x) :
-
-					if ($x->item_id == $this->input->post('id')) {
-
-						$stock_out += $x->qty;	
-
-					}
-
+					$data_stock = json_decode($row->detail);
+					foreach ($data_stock as $x) :
+						// $stock_out += 0;
+						if ($x->item_id == $this->input->post('id')) {
+							$stock_out += $x->qty;	
+						} else {
+							$stock_out += 0;
+						}
+					endforeach;
 				endforeach;
-
-			endforeach;
-
+			}
 		}
 
 		echo $stock_out;
-		
 	}
 	// End of function get_data_stock_move
 

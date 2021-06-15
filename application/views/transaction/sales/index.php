@@ -247,7 +247,8 @@
 				<!-- /div.card-body -->
 
 				<div class="card-footer">
-					<button type="submit" class="btn btn-primary float-right" id="btn-submit">Submit</button>
+					<!--<button type="submit" class="btn btn-primary float-right" id="btn-submit">Submit</button>-->
+					<button type="submit" class="btn btn-primary float-right">Submit</button>
 				</div>
 				<!-- /div.card-footer-->
 				</form>
@@ -348,7 +349,7 @@
 		$('.card-footer').show();
 		$('.btn-type-jual').removeClass('selected btn-primary').addClass('btn-default');
 		$('#btn-ecer').removeClass('btn-default').addClass('selected btn-primary');
-
+		
 		// add atribute
 		$('.btn-type-jual').removeAttr('data-active');
 		$('#btn-ecer').attr('data-active', 1);
@@ -375,12 +376,12 @@
 
 		$('#pay').val('');
 
-		if (param != 'ecer') {
-			$('#btn-submit').attr('disabled', true);
-		} else {
-			$('#btn-submit').attr('disabled', false);
-		}
-
+        if (param != 'ecer') {
+            $('#btn-submit').attr('disabled', true);
+        } else {
+            $('#btn-submit').attr('disabled', false);
+        }
+		
 	}
 
 	function insert_item(param) {
@@ -643,17 +644,20 @@
 				grandtotal: grandtotal
 			},
 			success: function(response) {
+				
 				//validation btn type jual 
 				var active = $('button[data-active="1"]').attr('id');
-
+				
 				if (active == 'btn-ecer') {
-					$('#btn-submit').removeAttr('disabled');
+				    $('#btn-submit').removeAttr('disabled');
 				} else {
-					if (response == 'matched') {
-						$('#btn-submit').removeAttr('disabled');
-					} else {
-						$('#btn-submit').attr('disabled', true);
-					}
+				    
+				    if (response == 'matched') {
+					    $('#btn-submit').removeAttr('disabled');
+    				} else {
+    					$('#btn-submit').attr('disabled', true);
+    				}
+    				
 				}
 			}
 		});
@@ -731,7 +735,7 @@
 				$('#btn-submit').removeAttr('disabled');
 
 				$('#label-template').html('ECERAN');
-
+				
 				//add atribute
 				$('.btn-type-jual').removeAttr('data-active');
 				$('#btn-ecer').attr('data-active', 1);
@@ -743,10 +747,10 @@
 	});
 
 	$('#btn-paket').on('click', function() {
-
+        
 		$('.btn-type-jual').removeClass('selected btn-primary').addClass('btn-default');
 		$(this).removeClass('btn-default').addClass('selected btn-primary');
-
+		
 		//add atribute
 		$('.btn-type-jual').removeAttr('data-active');
 		$('#btn-paket').attr('data-active', 1);
@@ -755,6 +759,6 @@
 		$('#btn-submit').attr('disabled', true);
 
 		$('#label-template').html('');
-		reset_table();
+		reset_table('paket');
 	});
 </script>

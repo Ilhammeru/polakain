@@ -467,11 +467,12 @@ class Sales extends CI_Controller {
 
 		$attr = array(
 						'item' => $this->db->query("SELECT item.id,
-														   item.name AS 'item_name',
+														   CONCAT(item.name, ' (', itemcolor.name, ')') AS 'item_name',
 														   item.code
 														   FROM item
+														   JOIN itemcolor ON itemcolor.id = JSON_UNQUOTE(JSON_EXTRACT(attribute, '$.color_id'))
 														   WHERE dept_id = " . $this->session->userdata('dept_id') . "
-														   ORDER BY name ASC")->result()
+														   ORDER BY item.name ASC")->result()
 					);
 
 		$this->load->view('transaction/sales/modal-load-item', $attr);

@@ -182,7 +182,7 @@ class Invoice extends CI_Controller {
 	}
 	// End of function display_filter_vendor
 
-    /**
+	/**
 	 * @param post => code
 	 */
 	public function scan_barcode() {
@@ -621,6 +621,8 @@ class Invoice extends CI_Controller {
 
 		$insert_id = $this->db->insert_id();
 
+		$total = 0;
+
 		for ($i = 0; $i < count($item); $i++) {
 
 			// $y = array();
@@ -637,6 +639,8 @@ class Invoice extends CI_Controller {
 						if ($d_cost != null) {
 							$d_cost_item = round(floatval($totalprice[$i])/$grandtotal, 2, PHP_ROUND_HALF_DOWN) * $d_cost;
 						}
+
+						$total = $total + floatval(str_replace(",", "", $totalprice[$i]));
 
 						$data_detail[] = array(
 												'invoice_id' 	=> $insert_id,
@@ -657,6 +661,14 @@ class Invoice extends CI_Controller {
 		}
 
 		$this->db->insert_batch('invoice_detail', $data_detail);
+
+		if ($grandtotal != $total) {
+
+			$this->db->where('id', $insert_id);
+			$this->db->update('invoice', array('total_price' => $total));
+
+			$grandtotal = $total;
+		}
 
 		if ($payment_status == 2) {
 
@@ -872,6 +884,31 @@ class Invoice extends CI_Controller {
 		
 	}
 	// End of function delete_invoice
+
+	public function cron_check_nominal() {
+
+		$query = $this->db->query("SELECT invoice.id,
+										invoice.total_price,
+										SUM(invoice_detail.total_price) AS total_price_x,
+										if (invoice.total_price != SUM(invoice_detail.total_price), 1, 0) AS param
+										FROM invoice
+										JOIN invoice_detail ON invoice_detail.invoice_id = invoice.id
+										WHERE dept_id = 41
+										GROUP BY invoice_detail.invoice_id  
+										ORDER BY `param`  DESC")->result();
+
+		foreach ($query as $row) {
+
+			if ($row->param == 1) {
+
+				$this->db->where('id', $row->id);
+				$this->db->update('invoice', array('total_price' => $row->total_price_x));
+
+				$this->db->where('invoice_id', $row->id);
+				$this->db->update('payment', array('nominal' => $row->total_price_x));
+			}
+		}
+	}
 
 }
 
