@@ -987,8 +987,10 @@ class Item extends CI_Controller {
 
 		if ($value == '') {
 			echo 'array-null';
+		} else if ($value > 3) {
+			echo 'array-err';
 		} else {
-			for ($i = 0; $i < $value; $i++) {
+			for ($i = 0; $i < ($value * 3); $i++) {
 				$img[] 			= base_url() . 'assets/barcode/' . $code . '.png';
 				$code_print[] 	= $code;
 			}

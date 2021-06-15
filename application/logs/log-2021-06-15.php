@@ -4337,3 +4337,21 @@ ERROR - 2021-06-15 17:34:47 --> Severity: Warning --> count(): Parameter must be
 ERROR - 2021-06-15 17:34:47 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /Applications/XAMPP/xamppfiles/htdocs/polakain/application/views/master/item/print-view.php 118
 ERROR - 2021-06-15 17:34:47 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /Applications/XAMPP/xamppfiles/htdocs/polakain/application/views/master/item/print-view.php 118
 ERROR - 2021-06-15 17:34:47 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /Applications/XAMPP/xamppfiles/htdocs/polakain/application/views/master/item/print-view.php 118
+ERROR - 2021-06-15 20:43:00 --> Severity: Notice --> Undefined offset: 3 /Applications/XAMPP/xamppfiles/htdocs/polakain/application/views/master/item/print-view.php 127
+ERROR - 2021-06-15 20:43:00 --> Severity: Notice --> Undefined offset: 3 /Applications/XAMPP/xamppfiles/htdocs/polakain/application/views/master/item/print-view.php 128
+ERROR - 2021-06-15 20:43:00 --> Severity: Notice --> Undefined offset: 4 /Applications/XAMPP/xamppfiles/htdocs/polakain/application/views/master/item/print-view.php 127
+ERROR - 2021-06-15 20:43:00 --> Severity: Notice --> Undefined offset: 4 /Applications/XAMPP/xamppfiles/htdocs/polakain/application/views/master/item/print-view.php 128
+ERROR - 2021-06-15 20:43:00 --> Severity: Notice --> Undefined offset: 5 /Applications/XAMPP/xamppfiles/htdocs/polakain/application/views/master/item/print-view.php 127
+ERROR - 2021-06-15 20:43:00 --> Severity: Notice --> Undefined offset: 5 /Applications/XAMPP/xamppfiles/htdocs/polakain/application/views/master/item/print-view.php 128
+ERROR - 2021-06-15 20:43:00 --> Severity: Notice --> Undefined offset: 6 /Applications/XAMPP/xamppfiles/htdocs/polakain/application/views/master/item/print-view.php 127
+ERROR - 2021-06-15 20:43:00 --> Severity: Notice --> Undefined offset: 6 /Applications/XAMPP/xamppfiles/htdocs/polakain/application/views/master/item/print-view.php 128
+ERROR - 2021-06-15 20:43:00 --> Severity: Notice --> Undefined offset: 7 /Applications/XAMPP/xamppfiles/htdocs/polakain/application/views/master/item/print-view.php 127
+ERROR - 2021-06-15 20:43:00 --> Severity: Notice --> Undefined offset: 7 /Applications/XAMPP/xamppfiles/htdocs/polakain/application/views/master/item/print-view.php 128
+ERROR - 2021-06-15 20:43:00 --> Severity: Notice --> Undefined offset: 8 /Applications/XAMPP/xamppfiles/htdocs/polakain/application/views/master/item/print-view.php 127
+ERROR - 2021-06-15 20:43:00 --> Severity: Notice --> Undefined offset: 8 /Applications/XAMPP/xamppfiles/htdocs/polakain/application/views/master/item/print-view.php 128
+ERROR - 2021-06-15 20:46:27 --> Severity: Notice --> Undefined offset: 3 /Applications/XAMPP/xamppfiles/htdocs/polakain/application/views/master/item/print-view.php 126
+ERROR - 2021-06-15 20:46:27 --> Severity: Notice --> Undefined offset: 4 /Applications/XAMPP/xamppfiles/htdocs/polakain/application/views/master/item/print-view.php 126
+ERROR - 2021-06-15 20:46:27 --> Severity: Notice --> Undefined offset: 5 /Applications/XAMPP/xamppfiles/htdocs/polakain/application/views/master/item/print-view.php 126
+ERROR - 2021-06-15 20:46:27 --> Severity: Notice --> Undefined offset: 6 /Applications/XAMPP/xamppfiles/htdocs/polakain/application/views/master/item/print-view.php 126
+ERROR - 2021-06-15 20:46:27 --> Severity: Notice --> Undefined offset: 7 /Applications/XAMPP/xamppfiles/htdocs/polakain/application/views/master/item/print-view.php 126
+ERROR - 2021-06-15 20:46:27 --> Severity: Notice --> Undefined offset: 8 /Applications/XAMPP/xamppfiles/htdocs/polakain/application/views/master/item/print-view.php 126

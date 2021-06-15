@@ -114,7 +114,7 @@
     <page size="A5">
         <div class="row">
             <?php
-            for ($i = 0; $i < (count($img) * 3); $i++) {
+            for ($i = 0; $i < count($img); $i++) {
                 if (is_int(($i - 2) / 3)) {
                     $classes = 'img-3';
                 } else if (is_int($i / 3)) {
