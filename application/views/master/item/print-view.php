@@ -73,7 +73,7 @@
 
             img {
                 margin: 0 1em;
-                margin-top: 0.85em;
+                margin-top: 0.45em;
                 margin-bottom: 0;
                 width: 39mm;
                 height: 14mm;
@@ -96,21 +96,6 @@
 
 <body>
 
-    <!-- <div class="s3">
-        <div class="text-center">
-            <img src="https://polakain.ansena-sa.com/assets/barcode/PAN.1.24.png" />
-            PAN.1.24
-        </div>
-        <div class="text-center">
-            <img src="https://polakain.ansena-sa.com/assets/barcode/PAN.1.24.png" />
-            PAN.1.24
-        </div>
-        <div class="text-center">
-            <img src="https://polakain.ansena-sa.com/assets/barcode/PAN.1.24.png" />
-            PAN.1.24
-        </div>
-    </div> -->
-
     <page size="A5">
         <div class="row">
             <?php
@@ -123,32 +108,13 @@
                     $classes = 'img-2';
                 }
 
-                echo '<div class="text-center col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4" style="position: relative; margin-bottom: -0.4em;">';
+                echo '<div class="text-center col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4" style="position: relative; margin-bottom: 1em;">';
                 echo '<img src="' . $img[$i] . '" class="' . $classes . '" />';
-                echo '<p style="font-size: 1em;">' . $code[$i] . '</p>';
+                echo '<p style="font-size: 1em; margin: 0;">' . $code[$i] . ' <span style="font-size: .8em">' . strtoupper($color[$i]) . '</span></p>';
+                // echo '<p style="font-size: 1em;">' . $code[$i] . '</p>';
                 echo '</div>';
             }
             ?>
-            <!-- <div class="text-center col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
-                <img src="https://polakain.ansena-sa.com/assets/barcode/PAN.1.24.png" />
-                PAN.1.24
-            </div>
-            <div class="text-center col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
-                <img class="img-2" src="https://polakain.ansena-sa.com/assets/barcode/PAN.1.24.png" />
-                PAN.1.24
-            </div>
-            <div class="text-center col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
-                <img class="img-3" src="https://polakain.ansena-sa.com/assets/barcode/PAN.1.24.png" />
-                PAN.1.24
-            </div>
-            <div class="text-center col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
-                <img class="img-3" src="https://polakain.ansena-sa.com/assets/barcode/PAN.1.24.png" />
-                PAN.1.24
-            </div>
-            <div class="text-center col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
-                <img class="img-3" src="https://polakain.ansena-sa.com/assets/barcode/PAN.1.24.png" />
-                PAN.1.24
-            </div> -->
         </div>
     </page>
 

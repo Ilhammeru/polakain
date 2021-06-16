@@ -352,12 +352,6 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-12">
-                        <buttton class="btn btn-success" onclick="print_barcode()">Print Barcode</buttton>
-                    </div>
-                </div>
-
                 <table id="tableItem" class="table table-bordered table-valign-middle">
 
                     <thead>
@@ -467,11 +461,6 @@
                 }
             }
         })
-    }
-
-    function print_barcode() {
-        var page = '<?= site_url('item/view_print'); ?>';
-        window.location = page;
     }
 
     function view_print(id) {
